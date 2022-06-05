@@ -1,3 +1,10 @@
 main{
     min-height: 80vh;
 }
+
+#ProdCard{
+    height: 410px;
+}
+.rza{
+    height:40px;
+}
