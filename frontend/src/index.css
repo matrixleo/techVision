@@ -8,3 +8,12 @@ main{
 .rza{
     height:40px;
 }
+.rating span{
+    margin: 0.1rem;
+}
+.rating{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
