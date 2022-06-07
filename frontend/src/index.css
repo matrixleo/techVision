@@ -17,3 +17,7 @@ main{
     flex-direction: row;
     justify-content:space-between;
 }
+#buttoni{
+    display: flex;
+    flex-direction: column;
+}
