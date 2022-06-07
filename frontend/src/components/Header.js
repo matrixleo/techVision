@@ -1,5 +1,5 @@
 import React from 'react'
-import {Navbar , Container, Nav} from 'react-bootstrap'
+import {Navbar , Container, Nav, Image} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 function Header() {
@@ -9,6 +9,7 @@ function Header() {
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand>techVision</Navbar.Brand>
+                
               </LinkContainer>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />  
