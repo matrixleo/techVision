@@ -1,7 +1,7 @@
 ===================
 Virtual Environment
 ------------
-python myenv/bin/activate
+source myenv/bin/activate
 ===================
 Start Back
 ------------
