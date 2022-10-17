@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 from .models import Product
 from .products import products
-from .serializer import ProductSerializer, serializers 
+from .serializer import ProductSerializer, UserSerializer, UserSerializerWithToken
 
 # Create your views here.
 
@@ -17,11 +17,13 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
 
-        data['username'] = self.user.username
-        data['email'] = self.user.email
+        serializer = UserSerializerWithToken(self.user).data
+
+        for k,v in serializer.items():
+            data[k] = v
 
         return data
-        
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
@@ -44,6 +46,13 @@ def getRoutes(request):
 
     ]
     return Response(routes)
+
+@api_view(['GET'])
+def getUserProfile(request):
+    users = request.user
+    serializers = UserSerializer(users, many = False)
+    return Response(serializers.data)
+
 
 @api_view(['GET'])
 def getProducts(request):
