@@ -21,3 +21,6 @@ main{
     display: flex;
     flex-direction: column;
 }
+#signup{
+    margin-top: 0.5rem;
+}
