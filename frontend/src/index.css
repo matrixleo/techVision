@@ -24,3 +24,6 @@ main{
 #signup{
     margin-top: 0.5rem;
 }
+.navi{
+    justify-content: flex-end;
+}
