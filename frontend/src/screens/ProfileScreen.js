@@ -50,7 +50,7 @@ function ProfileScreen() {
             setMessage('Passwords do not match')
         }else{
             dispatch(updateUserProfile({
-                'id':user._id,
+                'id':user?._id,
                 'name':name,
                 'email':email,
                 'password':password,
