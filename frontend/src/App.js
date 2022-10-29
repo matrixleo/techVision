@@ -9,6 +9,7 @@ import CartScreen from './screens/CartScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ShippingScreen from './screens/ShippingScreen';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route exact path='/' element={<HomeScreen/>}/> 
             <Route exact path='/login' element={<LoginScreen/>}/>
             <Route exact path='/register' element={<RegisterScreen/>}/>
+            <Route exact path='/login/shipping' element={<ShippingScreen/>}/>
             <Route exact path='/profile' element={<ProfileScreen/>}/>
             <Route exact path='/product/:id' element={<ProductScreen/>}/> 
             <Route exact path='/cart/:id' element={<CartScreen/>}/> 
