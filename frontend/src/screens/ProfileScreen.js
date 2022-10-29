@@ -61,7 +61,7 @@ function ProfileScreen() {
     <Row>
          <Col md={3}>
                 <h2>User Profile</h2>
-
+                {loading && <Loader />}
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
                 <Form onSubmit={submitHandler}>
@@ -114,7 +114,7 @@ function ProfileScreen() {
                         </Form.Control>
                     </Form.Group>
 
-                    <Button type='submit' variant='primary'>
+                    <Button type='submit' id='signup' variant='primary'>
                         Update
                 </Button>
 

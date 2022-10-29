@@ -23,7 +23,7 @@ function App() {
             <Route exact path='/' element={<HomeScreen/>}/> 
             <Route exact path='/login' element={<LoginScreen/>}/>
             <Route exact path='/register' element={<RegisterScreen/>}/>
-            <Route exact path='/login/shipping' element={<ShippingScreen/>}/>
+            <Route exact path='/shipping' element={<ShippingScreen/>}/>
             <Route exact path='/profile' element={<ProfileScreen/>}/>
             <Route exact path='/product/:id' element={<ProductScreen/>}/> 
             <Route exact path='/cart/:id' element={<CartScreen/>}/> 
