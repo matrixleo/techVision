@@ -11,6 +11,7 @@ import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route exact path='/register' element={<RegisterScreen/>}/>
             <Route exact path='/shipping' element={<ShippingScreen/>}/>
             <Route exact path='/payment' element={<PaymentScreen/>}/>
+            <Route exact path='/placeorder' element={<PlaceOrderScreen/>}/>
             <Route exact path='/profile' element={<ProfileScreen/>}/>
             <Route exact path='/product/:id' element={<ProductScreen/>}/> 
             <Route exact path='/cart/:id' element={<CartScreen/>}/> 
