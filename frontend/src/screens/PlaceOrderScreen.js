@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,7 +33,7 @@ function PlaceOrderScreen() {
             navigate(`/order/${order._id}`)
             dispatch({type: ORDER_CREATE_RESET})
         }
-    }, [success, navigate,order])
+    }, [success, navigate,order, dispatch])
 
     const placeOrder = () => {
         dispatch(createOrder({
@@ -149,7 +149,8 @@ function PlaceOrderScreen() {
                                 <Button
                                     type='button'
                                     className='btn-block'
-                                    disabled={cart.cartItems === 0}
+                                    // eslint-disable-next-line
+                                    disabled={cart.cartItems == 0}
                                     onClick={placeOrder}
                                 >
                                     Place Order
