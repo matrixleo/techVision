@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Navbar , Container, Nav, NavDropdown} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
-import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 
 function Header() {
 
@@ -28,8 +27,16 @@ function Header() {
                         <Nav className="ml-auto">
 
                             <LinkContainer to='/cart'>
-                                <Nav.Link ><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
+                                <Nav.Link ><i className="fas fa-shopping-cart"></i> Cart</Nav.Link>
                             </LinkContainer>
+
+                            {userInfo && userInfo.isAdmin && (
+                                <NavDropdown title='Admin' id='adminmenue'>
+                                <LinkContainer to='/admin/userlist'>
+                                    <NavDropdown.Item>Users</NavDropdown.Item>
+                                </LinkContainer>
+                            </NavDropdown>
+                            )}
 
                             {userInfo ? (
                                 <NavDropdown title={userInfo.name} id='username'>
@@ -44,7 +51,8 @@ function Header() {
                                     <LinkContainer to='/login'>
                                         <Nav.Link><i className="fas fa-user"></i>Login</Nav.Link>
                                     </LinkContainer>
-                                )}
+                                )
+                            }                
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
