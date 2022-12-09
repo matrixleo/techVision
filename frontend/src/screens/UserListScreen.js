@@ -64,7 +64,7 @@ function UserListScreen() {
                             <td>{user.email}</td>
                             <td>{user.isAdmin ? (<i className='fas fa-check' style={{color:'green'}}></i>) :( <i className='fas fa-remove' style={{color:'red'}}></i>)}</td>    
                             <td>
-                                <LinkContainer to={`/admin/user/${user._id}`}>
+                                <LinkContainer to={`/admin/user/${user._id}/edit`}>
                                     <Button variant=''><i className='fas fa-edit'></i></Button>
                                 </LinkContainer>
                                 <Button variant='link' className='btn-sm' onClick={()=>deleteHandler(user._id)}><i className='fas fa-trash'></i></Button>
