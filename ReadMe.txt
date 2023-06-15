@@ -2,6 +2,7 @@
 Virtual Environment
 ------------
 source myenv/bin/activate
+for windows: .myenv/scripts/activate       
 ===================
 Start Back
 ------------
