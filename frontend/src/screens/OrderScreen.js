@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, ListGroup, Image, Card, ListGroupItem } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Card, ListGroupItem, Button } from 'react-bootstrap'
 import { PayPalButton } from 'react-paypal-button-v2'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
-import { getOrderDetails, payOrder } from '../actions/orderActions'
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions'
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
 import { useParams } from 'react-router'
 import Loader from '../components/Loader'
 
-function OrderScreen() {
+function OrderScreen(navigate) {
 
   const {id} = useParams()
   const dispatch = useDispatch()
@@ -21,7 +21,15 @@ function OrderScreen() {
   const { order, error, loading} = orderDetails
 
   const orderPay = useSelector(state => state.orderPay)
-  const {loading:loadingPay, success:successPay} = orderPay
+  const {loading:loadingDeliver, success:successDeliver} = orderPay
+
+  
+  const orderDeliver = useSelector(state => state.orderDeliver)
+  const {loading:loadingPay, success:successPay} = orderDeliver
+
+  const userLogin = useSelector(state => state.userLogin)
+  const { userInfo} = userLogin
+
 
   if (!loading && !error) {
         order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
@@ -41,8 +49,15 @@ function OrderScreen() {
 
   useEffect(() => {
 
-    if (!order || successPay || order._id !== id) {
+    if(!userInfo){
+        navigate('/login')
+    }
+
+    if (!order || successPay || order._id !== id  || successDeliver ) {
         dispatch({type:ORDER_PAY_RESET})
+        dispatch({type:ORDER_DELIVER_RESET})
+
+
         dispatch(getOrderDetails(id))
       }
       else if (!order.isPaid) {
@@ -53,12 +68,17 @@ function OrderScreen() {
             }
         }
         // eslint-disable-next-line
-    }, [dispatch, id, successPay])
+    }, [dispatch, id, successPay, successDeliver])
 
 
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult))
       };
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
+    }
+
 
   return loading ? (
     <Loader />
@@ -180,6 +200,19 @@ function OrderScreen() {
                         )}
 
                     </ListGroup>
+
+                    {loadingDeliver && <Loader/>}
+                    {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                        <ListGroup.Item>
+                            <Button
+                            type='button'
+                            className='btn btn-block'
+                            onClick={deliverHandler}
+                            >
+                              Mark As Delivered  
+                            </Button>
+                        </ListGroup.Item>
+                    )}
                 </Card>
             </Col>
         </Row>
