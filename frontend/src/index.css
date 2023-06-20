@@ -30,8 +30,19 @@ main{
 .searchbox{
     width: 350px;
     margin-left:200px;
-    margin-right: 20px;
 }
 .form{
     display: flex;
+}
+.text-right{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.total{
+    height: 61px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    align-items: center;
 }

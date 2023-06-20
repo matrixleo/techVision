@@ -98,7 +98,7 @@ function CartScreen() {
                 </ListGroup.Item>
             </ListGroup>
 
-            <ListGroup.Item>
+            <ListGroup.Item className='total'>
                 <Button
                     type='button'
                     className='btn-block'
