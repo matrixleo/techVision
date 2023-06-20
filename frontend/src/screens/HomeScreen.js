@@ -5,21 +5,21 @@ import Product from '../components/Product';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { listProducts } from '../actions/productActions';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function HomeScreen() {
+  const dispatch = useDispatch();
+  const productList = useSelector((state) => state.productList);
+  const { error, loading, products, page, pages } = productList;
 
-  const dispatch = useDispatch()
-  const productList = useSelector(state => state.productList)
-  const {error,loading,products} = productList
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const keyword = new URLSearchParams(location.search).get('keyword'); // Update to 'keyword'
 
   useEffect(() => {
-      dispatch(listProducts())
-      
-  },[dispatch])
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
-  
   return (
     <div>
         <h1>Latest Products</h1>
