@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 function SearchBox() {
-  const [keyword, setKeyword] = useState('');
-  const navigate = useNavigate();
-  const location = useLocation();
+    const [keyword, setKeyword] = useState('')
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (keyword) {
-      navigate(`/?keyword=${keyword}`);
-    } else {
-      navigate(location.pathname);
+    let navigate = useNavigate()
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        if (keyword) {
+            navigate(`/?keyword=${keyword}&page=1`)
+        } else {
+            navigate('/')
+        }
     }
-  };
-
-  return (
-    <Form onSubmit={submitHandler} inline='true' className='form'>
+    return (
+      <Form onSubmit={submitHandler} inline='true' className='form'>
       <Form.Control
         type='text'
         name='q'
@@ -29,7 +28,7 @@ function SearchBox() {
         Submit
       </Button>
     </Form>
-  );
+    )
 }
 
-export default SearchBox;
+export default SearchBox
