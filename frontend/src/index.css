@@ -46,3 +46,7 @@ main{
     margin-left: 20px;
     align-items: center;
 }
+.productImage{
+    height: 230px;
+    object-fit: contain;
+}
